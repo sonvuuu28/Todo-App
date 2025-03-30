@@ -1,0 +1,46 @@
+xây dockerfile trước test môi trường python, tạo image: 
+docker build -t python_image:v1.0 .
+
+run container và mở cmd python để test python sau khi stop container nó tự xóa: 
+docker run -it --rm --name python_container python_image:v1.0 python
+
+à vậy cũng cần mốt container để mình xài trước chứ hả
+docker run -it --name python_container python_image:v1.0
+
+Mốt muốn xài thì cứ run container ở desktop rồi chạy
+docker exec -it <id-container> <python hay test.py>
+
+Hmm bây giờ ta cần phải móc thằng docker cho folder project hiện tại nhé => dùng bind mount để cho test lẹ
+docker run --rm -it --name python_container -w /app --mount type=bind,source="${PWD}",target=/app python_image:v1.0 bash
+
+chạy thử file testFile.txt 
+thêm file và sửa file  trong container => folder bên ngoài cùng được thay đổi nè
+root@0caa28dc0032:/app# touch testFile.py
+root@0caa28dc0032:/app# cat testFile.py
+root@0caa28dc0032:/app# echo 'print("Hello, Docker!")' > testFile.py
+
+********************** Có python rồi giờ kéo môi trường mysql **********************
+kéo official image và run container luôn
+docker run -d --name mysql_container -e MYSQL_ROOT_PASSWORD=123 -e MYSQL_DATABASE=todo_db mysql:8.0
+
+test môi trường tiếp nè
+docker exec -it mysql_container mysql -u root -p
+
+********************** có môi trường rồi giờ thực hành thôi  **********************
+vào container mysql
+USE todo_db;
+
+CREATE TABLE tasks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name NVARCHAR(255) NOT NULL,
+    status bit
+);
+insert into tasks (id, name, status) values(1, N'Karim Benzama', true);
+
+DESCRIBE tasks;
+
+viết script python insert đê
+
+
+viết docker-compose đê test đủ rồi
+điều chỉnh thư mục 1 chút

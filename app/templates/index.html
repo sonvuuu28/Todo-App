@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <script
+      src="https://kit.fontawesome.com/b4db23353b.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>TODO APP</h1>
+      <div class="wrapper-search-box">
+        <div class="search-box-inner">
+          <div class="search-box-inner-left">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="text"
+              placeholder="Nhập công việc"
+              class="search-input"
+              id="tenCongViec"
+            />
+          </div>
+          <div class="search-box-inner-right">
+            <div class="black-box" id="themCongViec">
+              <i class="fa-solid fa-plus"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Danh sách các task được render từ server -->
+      <div class="wrapper-content" id="dsCongViec">
+        {% for task in tasks %}
+        <div class="box">
+          <div class="box-inner">
+            <h3>{{ task['id'] }}</h3>
+            <h3>{{ task['name'] }}</h3>
+            <div class="box-inner-right">
+              <!-- Checkbox: nếu task['status'] là true thì được check.
+                 Gán data-id để nhận biết id của task -->
+              <input type="checkbox" {% if task['status'] %}checked{% endif %}
+              data-id="{{ task['id'] }}">
+              <!-- Icon xóa với data-id -->
+              <i
+                class="fa-solid fa-trash delete"
+                data-id="{{ task['id'] }}"
+              ></i>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

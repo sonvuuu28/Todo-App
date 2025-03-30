@@ -1,0 +1,124 @@
+/* ===== Reset CSS & Cấu trúc chính ===== */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    height: 700px;
+}
+
+/* ===== Thanh tìm kiếm ===== */
+.wrapper-search-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 50px;
+    background: #1d2b64;
+    border-radius: 20px;
+    margin: 20px 0 50px 0;
+}
+
+.search-box-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    height: 40px;
+    background: white;
+    border-radius: 15px;
+    padding: 0 20px;
+}
+
+.search-box-inner-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    width: 200px;
+    height: 30px;
+    font-size: 18px;
+}
+
+.black-box {
+    width: 22px;
+    height: 22px;
+    background-color: black;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.black-box i {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.black-box:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.black-box:hover i {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ===== Danh sách công việc ===== */
+.wrapper-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1000px;
+    height: 400px;
+    padding: 20px 0;
+    margin: 30px 0;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 50px;
+    background: #3498db;
+    margin-bottom: 30px;
+}
+
+.box-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 450px;
+    height: 40px;
+    background: white;
+    padding: 0 20px;
+}
+
+.box-inner-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.box-inner-right i {
+    color: #e74c3c ;
+    transition: color 0.3s ease;
+}
+
+.box-inner-right i:hover {
+    color: #ff7eb3;
+}
